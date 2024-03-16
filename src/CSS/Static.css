@@ -1,0 +1,129 @@
+.backGround{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(-90deg, blue, violet);
+}
+
+.todoApp{
+    width: 400px;
+    margin: auto 0;
+    position: absolute;
+    background-color: aliceblue;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.headerTodo{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin: 0;
+}
+
+.InputTask{
+    margin-top: 20px;
+    display: flex;
+}
+
+.InputForm{
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #aaa;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+}
+
+.AddButton{
+    margin-left: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: #8D4AE7;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 30px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.AddButton:hover{
+    background-color: #6f00ff;
+}
+
+.Blur{
+    background-color: #b38be8 !important;
+    cursor: not-allowed !important;
+}
+
+.Task{
+    padding: 10px;
+    background-color: #dfdbe2;
+    margin-top: 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.EmptyTask{
+    text-align: center;
+    font-weight: 700;
+}
+
+.Task-remove{
+    width: 42px;
+    height: 100%;
+    top: 50%;
+    right: -100%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    background-color: #ff4d4d;
+    position: absolute;
+    text-align: center;
+    line-height: 41px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.Task:hover .Task-remove{
+    right: 0;
+}
+
+.Task-remove:hover{
+    background-color: #ff0000;
+}
+
+.Footer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Footer p{
+    margin: 0;
+    font-weight: 700;
+}
+
+.ClearButton{
+    all: unset;
+    background-color: #8D4AE7;
+    height: 20px;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    line-height: 10px;
+}
+
+.ClearButton:hover{
+    background-color: #6f00ff;
+}
