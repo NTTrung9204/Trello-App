@@ -29,6 +29,7 @@ function BackGround() {
                 if (isClicked && element.className === 'todoApp') {
                     element.style.left = event.clientX - positionPointer.x + 'px';
                     element.style.top = event.clientY - positionPointer.y + 'px';
+                    localStorage.setItem(element.getAttribute('data-id'), JSON.stringify({ x: element.style.left, y: element.style.top }));
                 }
             });
         });
@@ -37,9 +38,9 @@ function BackGround() {
 
     return (
         <div className='backGround'>
-            <TodoApp />
-            <TodoApp />
-            <TodoApp />
+            <TodoApp data_id={123} />
+            <TodoApp data_id={333} />
+            <TodoApp data_id={321} />
         </div>
     );
 }

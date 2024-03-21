@@ -6,7 +6,7 @@ import Footer from './Footer.js';
 import '../../CSS/Static.css'
 
 
-function TodoApp() {
+function TodoApp({data_id}) {
     const [isFill, SetIsFill] = useState(true);
     const [taskList, SetTaskList] = useState([
             "Complete online JavaScript course",
@@ -49,9 +49,18 @@ function TodoApp() {
         }
     }
 
+    useEffect(() => {
+        const position = JSON.parse(localStorage.getItem(data_id));
+        if (position) {
+            const todoApp = document.querySelector(`[data-id="${data_id}"]`);
+            todoApp.style.left = position.x;
+            todoApp.style.top = position.y;
+        }
+    }, []);
+
 
     return (
-        <div className="todoApp">
+        <div data-id={data_id} className="todoApp">
             <h1 className="headerTodo">Todo App</h1>
             <InputTask onChange={onChange} onClick={addListTask} status={isFill} />
             <ListTask count={count} taskList={taskList} onClick={removeTask} />
