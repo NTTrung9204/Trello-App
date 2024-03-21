@@ -1,9 +1,10 @@
 import './InputTask.js';
 import InputTask from './InputTask.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ListTask from './ListTask.js';
 import Footer from './Footer.js';
 import '../../CSS/Static.css'
+
 
 function TodoApp() {
     const [isFill, SetIsFill] = useState(true);
@@ -47,6 +48,7 @@ function TodoApp() {
             SetCount(0);
         }
     }
+
 
     return (
         <div className="todoApp">
