@@ -9,8 +9,10 @@ function TodoApp({data_id}) {
 
     const [isFill, SetIsFill] = useState(true);
     const [taskList, SetTaskList] = useState(JSON.parse(localStorage.getItem(data_id + "_listTask")) || []);
-    
+    const [nameBoard, SetNameBoard] = useState(JSON.parse(localStorage.getItem(data_id + "_nameBoard")) || "Todo App" );
     const [count, SetCount] = useState(taskList.length);
+
+
     
     function updateCount(status){
         status ? SetCount(count + 1) : SetCount(count - 1);
@@ -53,12 +55,20 @@ function TodoApp({data_id}) {
             todoApp.style.left = position.x;
             todoApp.style.top = position.y;
         }
+
+        document.getElementById(data_id + "_nameBoard").addEventListener('dblclick', function(event){
+            const nameBoard = prompt("Enter new name: ");
+            if(nameBoard){
+                SetNameBoard(nameBoard);
+                localStorage.setItem(data_id + "_nameBoard", JSON.stringify(nameBoard));
+            }
+        });
     }, []);
 
 
     return (
         <div data-id={data_id} className="todoApp">
-            <h1 className="headerTodo">Todo App</h1>
+            <h1 id={data_id + "_nameBoard"} className="headerTodo">{nameBoard}</h1>
             <InputTask data_id={data_id} onChange={onChange} onClick={addListTask} status={isFill} />
             <ListTask count={count} taskList={taskList} onClick={removeTask} />
             <Footer count={count} onClick={clearAll} />

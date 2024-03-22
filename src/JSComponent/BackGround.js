@@ -21,9 +21,14 @@ function BackGround() {
     const [todoAppList, setTodoAppList] = useState(localStorage.getItem('todoAppList')? JSON.parse(localStorage.getItem('todoAppList')) : []);
 
     function createTodoApp() {
-        const newTodoAppList = [...todoAppList, generateTimestampID()];
+        const idApp = generateTimestampID();
+        const newTodoAppList = [...todoAppList, idApp];
         setTodoAppList(newTodoAppList);
         localStorage.setItem('todoAppList', JSON.stringify(newTodoAppList));
+        const nameBoard = prompt("Enter name of board: ");
+        if(nameBoard){
+            localStorage.setItem(idApp + "_nameBoard", JSON.stringify(nameBoard));
+        }
     }
 
     useEffect(() => {
