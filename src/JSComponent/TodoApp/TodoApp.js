@@ -11,8 +11,6 @@ function TodoApp({data_id}) {
     const [taskList, SetTaskList] = useState(JSON.parse(localStorage.getItem(data_id + "_listTask")) || []);
     const [nameBoard, SetNameBoard] = useState(JSON.parse(localStorage.getItem(data_id + "_nameBoard")) || "Todo App" );
     const [count, SetCount] = useState(taskList.length);
-
-
     
     function updateCount(status){
         status ? SetCount(count + 1) : SetCount(count - 1);
