@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import TodoApp from './TodoApp/TodoApp.js';
+import CreateTodo from './TodoApp/CreateTodo.js';
 
 function generateTimestampID() {
     return Date.now().toString(36);
@@ -15,7 +16,16 @@ document.body.addEventListener('mouseup', function (e) {
     });
 });
 
+
 function BackGround() {
+    const [todoAppList, setTodoAppList] = useState(localStorage.getItem('todoAppList')? JSON.parse(localStorage.getItem('todoAppList')) : []);
+
+    function createTodoApp() {
+        const newTodoAppList = [...todoAppList, generateTimestampID()];
+        setTodoAppList(newTodoAppList);
+        localStorage.setItem('todoAppList', JSON.stringify(newTodoAppList));
+    }
+
     useEffect(() => {
         const todoApp = document.getElementsByClassName("todoApp");
         var zIndexCurrent = 0;
@@ -41,16 +51,16 @@ function BackGround() {
             });
         });
 
-    }, []);
+    }, [todoAppList]);
 
     return (
         <div className='backGround'>
-            <TodoApp data_id={123} />
-            <TodoApp data_id={333} />
-            <TodoApp data_id={321} />
-            <button id="createTodo">
-            <i className="fas fa-plus"></i>
-            </button>
+            {
+                todoAppList.map((data_id) => {
+                    return <TodoApp key={data_id} data_id={data_id} />
+                })
+            }
+            <CreateTodo onClick={createTodoApp} />
         </div>
     );
 }

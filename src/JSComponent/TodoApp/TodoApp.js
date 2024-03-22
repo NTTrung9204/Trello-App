@@ -5,15 +5,10 @@ import ListTask from './ListTask.js';
 import Footer from './Footer.js';
 import '../../CSS/Static.css'
 
-
 function TodoApp({data_id}) {
+
     const [isFill, SetIsFill] = useState(true);
-    const [taskList, SetTaskList] = useState([
-            "Complete online JavaScript course",
-            "Jog around the park 3x",
-            "10 minutes meditation",
-            "Read book for 1 hour",
-        ]);
+    const [taskList, SetTaskList] = useState(JSON.parse(localStorage.getItem(data_id + "_listTask")) || []);
     
     const [count, SetCount] = useState(taskList.length);
     
@@ -33,12 +28,14 @@ function TodoApp({data_id}) {
     }
 
     function addListTask(){
-        const task = document.querySelector('.InputForm').value;
+        const task = document.getElementById(data_id).value;
         if(task) {
-            SetTaskList([task, ...taskList]);
+            const newTaskList = [task, ...taskList];
+            SetTaskList(newTaskList);
             updateCount(true);
             onChange({target: {value: false}});
-            document.querySelector('.InputForm').value = '';
+            document.getElementById(data_id).value = '';
+            localStorage.setItem(data_id + "_listTask", JSON.stringify(newTaskList));
         }
     }
 
@@ -62,7 +59,7 @@ function TodoApp({data_id}) {
     return (
         <div data-id={data_id} className="todoApp">
             <h1 className="headerTodo">Todo App</h1>
-            <InputTask onChange={onChange} onClick={addListTask} status={isFill} />
+            <InputTask data_id={data_id} onChange={onChange} onClick={addListTask} status={isFill} />
             <ListTask count={count} taskList={taskList} onClick={removeTask} />
             <Footer count={count} onClick={clearAll} />
         </div>

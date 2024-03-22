@@ -8,7 +8,7 @@
 }
 
 .todoApp{
-    width: 400px;
+    width: 300px;
     margin: auto 0;
     position: absolute;
     background-color: aliceblue;
@@ -97,6 +97,9 @@
     color: white;
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Task:hover .Task-remove{
