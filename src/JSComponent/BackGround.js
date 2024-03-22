@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import TodoApp from './TodoApp/TodoApp.js';
 import CreateTodo from './TodoApp/CreateTodo.js';
+import HeaderListTask from './TodoApp/HeaderListTask.js';
 
 function generateTimestampID() {
     return Date.now().toString(36);
@@ -22,12 +23,12 @@ function BackGround() {
 
     function createTodoApp() {
         const idApp = generateTimestampID();
-        const newTodoAppList = [...todoAppList, idApp];
-        setTodoAppList(newTodoAppList);
-        localStorage.setItem('todoAppList', JSON.stringify(newTodoAppList));
         const nameBoard = prompt("Enter name of board: ");
         if(nameBoard){
             localStorage.setItem(idApp + "_nameBoard", JSON.stringify(nameBoard));
+            const newTodoAppList = [...todoAppList, idApp];
+            setTodoAppList(newTodoAppList);
+            localStorage.setItem('todoAppList', JSON.stringify(newTodoAppList));
         }
     }
 
@@ -60,6 +61,7 @@ function BackGround() {
 
     return (
         <div className='backGround'>
+            <HeaderListTask todoAppList={todoAppList} />
             {
                 todoAppList.map((data_id) => {
                     return <TodoApp key={data_id} data_id={data_id} />
